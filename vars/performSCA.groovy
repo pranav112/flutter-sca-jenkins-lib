@@ -1,5 +1,6 @@
 def call() {
   echo "Performing SCA"
+  installDependencies()
   DART_ANALYSIS_STATUS = sh(script: """
       dart run dart_code_metrics:metrics analyze lib --reporter=html --set-exit-on-violation-level=alarm --no-fatal-style --fatal-performance --no-fatal-warnings 
   """, returnStatus: true)
@@ -8,4 +9,8 @@ def call() {
   } else {
       echo "Static code analysis is successfull"
   }
+}
+
+def installDependencies() {
+    sh "flutter pub add --dev dart_code_metrics" 
 }
