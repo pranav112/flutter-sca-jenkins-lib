@@ -1,3 +1,3 @@
-def performSCA() {
+def call() {
   echo "Performing SCA"
 }
